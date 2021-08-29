@@ -11,9 +11,9 @@ on:
   release:
     types: [published]
 
-  push:
-    branches: 
-      - master
+  #push:
+    #branches: 
+      #- master
 
   #schedule:
   #  - cron: 0 8 * * 5
@@ -81,7 +81,13 @@ jobs:
     #  working-directory: ./openwrt
     #  run: |
     #    git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon-jerrykuku
-
+    - name: package
+      working-directory: ./openwrt
+      run: |
+        git clone https://github.com/xiaorouji/openwrt-passwall.git package/openwrt-passwall
+        git clone https://github.com/project-lede/luci-app-godproxy.git package/luci-app-godproxy
+        git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
+        git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
     - name: Configuration Customization - Build_x86_64
       env:
         CONFIG_FILE: 'x86_64.config'
